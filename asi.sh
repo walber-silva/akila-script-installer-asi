@@ -4,6 +4,19 @@
 NOME="Akila Script Inslaller (ASI)"
 VERSION="Versao 1.0"
 
+# Verificando root
+root(){
+	if [ "`whoami`" != "root" ]; then
+		dialog	\
+		--backtitle "$NOME - $VERSION"	\
+		--title "Aviso"	\
+		--msgbox "	\nDesculpe!..E preciso executar como root \nex:(sudo ./asi.sh)"	\
+		9 45
+		exit
+	fi
+}
+root
+
 # Logo
 logo(){
 	dialog \
