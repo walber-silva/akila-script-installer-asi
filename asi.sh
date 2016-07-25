@@ -1,0 +1,213 @@
+#!/bin/bash
+#-*- coding: utf-8 -*-
+
+NOME="Akila Script Inslaller (ASI)"
+VERSION="Versao 1.0"
+
+# Logo
+logo(){
+	dialog \
+	--backtitle "$NOME - $VERSION"	\
+	--title "Akila Script Installer"	\
+	--infobox "\n  
+	                          ./+o+- \n      
+                  yyyyy- -yyyyyy+   \n  
+               ://+//////-yyyyyyo     \n
+           .++ .:/++++++/-.+sss/\`     \n
+         .:++o:  /++++++++/:--:/-     \n
+        o:+o+:++.\`..\`\`\`.-/oo+++++/   \n 
+       .:+o:+o/.          \`+sssoo+/   \n
+  .++/+:+oo+o:\`             /sssooo.  \n
+ /+++//+:\`oo+o               /::--:.  \n
+ \+/+o+++\`o++o               ++////.  \n
+  .++.o+++oo+:\`             /dddhhh.  \n
+       .+.o+oo:.          \`oddhhhh+   \n
+        \+.++o+o\`\`-\`\`\`\`.:ohdhhhhh+ \n   
+         \`:o+++ \`ohhhhhhhhyo++os:  \n   
+           .o:\`.syhhhhhhh/.oo++o\`  \n   
+               /osyyyyyyo++ooo+++/   \n 
+                   \`\`\`\`\` +oo+++o\:\n  
+                          \`oo++." \
+    0 0 && sleep 3
+}
+logo
+
+# Test da conexao
+test_internet(){
+dialog --backtitle "$NOME - $VERSION" --title " Informacao!" --infobox " \nVerificando conexao..." 0 0 && sleep 2
+while [[ ! $(ping -c1 8.8.8.8) ]]; do
+dialog	\
+--title "Aviso!"	\
+--msgbox "  Nao foi possivel conectar-se a internet..
+  Por favor Verifique sua conexão!
+
+  AVISO! Caso deseje continuar, algumas coisas
+  poderão não funcionar corretamente!"	\
+9 55
+clear
+break
+done
+clear
+}
+test_internet
+
+# Menu
+menu(){
+
+opcao=$(
+      dialog --backtitle "$NOME - $VERSION" \
+	     --stdout               \
+             --title "Menu"  \
+             --menu "Selecione uma opcao:" \
+            0 0 0                   \
+      1  "Instalacao padrao [PACMAN] (#ROOT)" \
+	    2  "Instalacao adicional [YAOURT] ($NO-ROOT)" \
+	    3  "Verificar Atualizacao do Sistema" \
+	    4  "Limpar Cache e arquivos temporarios" \
+	    5  "Instalar" \
+	    6  "Desinstalar" \
+	    7  "Desinstalar com dependencias" \
+	    8  "Buscar" \
+	    9  "Status do Yaourt" \
+      10 "Instalar Bootloader" \
+	    11 "Reiniciar" \
+	    12 "Sobre"	\
+      0  "Sair"                )
+
+	opcao=$opcao
+
+	[ $? -ne 0 ] && return
+
+	if [ "$opcao" == "1" ]; then
+	root
+	clear
+	cd src/
+	sh install.sh
+
+	menu
+
+	elif [ "$opcao" == "2" ]; then
+	noroot
+	cd src/
+	sh installyaourt.sh
+
+	menu
+
+  elif [ "$opcao" == "3" ]; then
+	noroot
+	clear
+	yaourt -Syua --noconfirm
+	echo; echo "-> Precione enter para prosseguir..."
+	read
+	menu
+
+  elif [ "$opcao" == "4" ]; then
+	noroot
+	clear
+	yaourt -Scc
+	echo; echo "-> Precione enter para prosseguir..."
+	read
+	menu
+
+  elif [ "$opcao" == "5" ]; then
+	noroot
+	clear
+	programa=$(dialog --stdout \
+	    --backtitle 'Instalar' \
+	    --inputbox 'Informe o nome do programa para instalar: ' 10 50)
+	clear
+	yaourt -S --needed $programa --noconfirm
+	echo; echo "-> Precione enter para continuar"; read
+	menu
+
+  elif [ "$opcao" == "6" ]; then
+	noroot
+	clear
+	programa=$(dialog --stdout \
+	    --backtitle 'Desinstalar' \
+	    --inputbox 'Informe o nome do programa para desinstalar: ' 10 50)
+	clear
+	yaourt -R $programa --noconfirm
+	echo; echo "-> Precione enter para continuar"; read
+	menu
+
+  elif [ "$opcao" == "7" ]; then
+	noroot
+	clear
+	programa=$(dialog --stdout \
+	    --backtitle 'Desinstalar com dependencias' \
+	    --inputbox 'Informe o nome do programa para desinstalar com as suas dependencias: ' 10 50)
+	clear
+	yaourt -Rscn $programa --noconfirm
+	echo; echo "-> Precione enter para continuar"; read
+	menu
+
+  elif [ "$opcao" == "8" ]; then
+	noroot
+	clear
+	programa=$(dialog --stdout \
+	    --backtitle 'Buscar' \
+	    --inputbox 'Informe o nome do programa para buscar: ' 10 50)
+	clear
+	yaourt $programa
+	echo; echo "-> Precione enter para continuar"; read
+	menu
+
+  elif [ "$opcao" == "9" ]; then
+	noroot
+	clear
+	yaourt --stats
+	echo; echo "-> Precione enter para continuar"; read
+	menu
+
+  elif [ "$opcao" == "10" ]; then
+  clear
+  bootloader_install
+  echo; echo "-> Precione enter para continuar"; read
+  menu
+
+  elif [ "$opcao" == "11" ]; then
+	dialog --yesno 'Tem certeza que deseja reinciar?' 0 0
+	if [ $? = 0 ]; then
+	reboot
+	else
+ 	menu
+	fi
+	menu
+
+	elif [ "$opcao" == "0" ]; then
+  clear
+	echo "Saindo do ASI..."
+	exit
+
+	menu
+  elif [ "$opcao" == "12" ]; then
+	dialog --title 'Sobre' --msgbox '\n
+	\n
+	########################################################################\n
+	#                                                                      #\n
+	#        ALT Project - Arch Linux Post Installation (ALPI)             #\n
+	#                                                                      #\n
+	########################################################################\n
+	\n
+      	\n
+	Arch Linux Post Installation (ALPI), e uma ferramenta que permite facilitar a
+	configuracao do sistema Arch Linux apos a sua instalacao. Focada para iniciantes
+	na distribuicao e para usuarios experientes que querem automatizar a tarefa de
+	configuracao do sistema.\n
+	\n
+	\n
+	\n
+	\n
+	\n
+	                    Copyright (c) 2016 ALT Project\n
+	' 25 80
+
+	menu
+
+
+else
+echo 'Saindo do programa...'
+fi
+}
+menu
