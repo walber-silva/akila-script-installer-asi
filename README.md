@@ -2,6 +2,7 @@
 ### Copyright (c) Akila Project 2016
 
 ![asi](https://github.com/walber-silva/akila-script-installer-asi/blob/master/asi.png)
+![screenshot](https://github.com/walber-silva/akila-script-installer-asi/blob/master/menu.png)
 ### Descrição
 
 ```
