@@ -73,19 +73,18 @@ opcao=$(
              --title "Menu"  \
              --menu "Selecione uma opcao:" \
             0 0 0                   \
-      1  "Instalacao padrao [PACMAN] (#ROOT)" \
-	    2  "Instalacao adicional [YAOURT] ($NO-ROOT)" \
+      1  "Instalacao Codec-Multimidia" \
+	    2  "Instalacao Programas para Desenvolvimento" \
 	    3  "Verificar Atualizacao do Sistema" \
 	    4  "Limpar Cache e arquivos temporarios" \
-	    5  "Instalar" \
+	    5  "Interface Grafica" \
 	    6  "Desinstalar" \
 	    7  "Desinstalar com dependencias" \
-	    8  "Buscar" \
-	    9  "Status do Yaourt" \
-      10 "Instalar Bootloader" \
-	    11 "Reiniciar" \
-	    12 "Sobre"	\
-      0  "Sair"                )
+	    8  "Programas Extras" \
+	    9  "Acessorios" \
+      10 "Personalização" \
+	    11 "Sobre" \
+	    0 "Sair"        )
 
 	opcao=$opcao
 
