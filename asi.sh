@@ -9,24 +9,24 @@ logo(){
 	dialog \
 	--backtitle "$NOME - $VERSION"	\
 	--title "Akila Script Installer"	\
-	--infobox "\n  
-	                          ./+o+- \n      
-                  yyyyy- -yyyyyy+   \n  
+	--infobox "\n
+	                          ./+o+- \n
+                  yyyyy- -yyyyyy+   \n
                ://+//////-yyyyyyo     \n
            .++ .:/++++++/-.+sss/\`     \n
          .:++o:  /++++++++/:--:/-     \n
-        o:+o+:++.\`..\`\`\`.-/oo+++++/   \n 
+        o:+o+:++.\`..\`\`\`.-/oo+++++/   \n
        .:+o:+o/.          \`+sssoo+/   \n
   .++/+:+oo+o:\`             /sssooo.  \n
  /+++//+:\`oo+o               /::--:.  \n
  \+/+o+++\`o++o               ++////.  \n
   .++.o+++oo+:\`             /dddhhh.  \n
        .+.o+oo:.          \`oddhhhh+   \n
-        \+.++o+o\`\`-\`\`\`\`.:ohdhhhhh+ \n   
-         \`:o+++ \`ohhhhhhhhyo++os:  \n   
-           .o:\`.syhhhhhhh/.oo++o\`  \n   
-               /osyyyyyyo++ooo+++/   \n 
-                   \`\`\`\`\` +oo+++o\:\n  
+        \+.++o+o\`\`-\`\`\`\`.:ohdhhhhh+ \n
+         \`:o+++ \`ohhhhhhhhyo++os:  \n
+           .o:\`.syhhhhhhh/.oo++o\`  \n
+               /osyyyyyyo++ooo+++/   \n
+                   \`\`\`\`\` +oo+++o\:\n
                           \`oo++." \
     0 0 && sleep 3
 }
@@ -184,28 +184,26 @@ opcao=$(
   elif [ "$opcao" == "12" ]; then
 	dialog --title 'Sobre' --msgbox '\n
 	\n
-	########################################################################\n
-	#                                                                      #\n
-	#        ALT Project - Arch Linux Post Installation (ALPI)             #\n
-	#                                                                      #\n
-	########################################################################\n
+	  ########################################################################\n
+	  #                                                                      #\n
+	  #          		Akila Project - Akila Script Installer (ASI)             	#\n
+	  #                                                                      #\n
+	  ########################################################################\n
 	\n
-      	\n
-	Arch Linux Post Installation (ALPI), e uma ferramenta que permite facilitar a
-	configuracao do sistema Arch Linux apos a sua instalacao. Focada para iniciantes
-	na distribuicao e para usuarios experientes que querem automatizar a tarefa de
-	configuracao do sistema.\n
-	\n
-	\n
-	\n
-	\n
-	\n
-	                    Copyright (c) 2016 ALT Project\n
-	' 25 80
+  		\n
+																							GNU GENERAL PUBLIC LICENSE\n
+					 																			Version 3, 29 June 2007\n\n
 
+	    Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>\n
+	     Everyone is permitted to copy and distribute verbatim copies\n
+	     of this license document, but changing it is not allowed.\n
+	\n
+	\n
+	\n
+	\n
+	                    Copyright (c) 2016 Akila Project\n
+' 25 80
 	menu
-
-
 else
 echo 'Saindo do programa...'
 fi
