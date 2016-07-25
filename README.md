@@ -1,4 +1,4 @@
-### Akila Script Inslaller - (ASI)
+### Akila Script Inslaller - (ASI):wink:
 ### Copyright (c) Akila Project 2016
 
 ![asi](https://github.com/walber-silva/akila-script-installer-asi/blob/master/asi.png)
