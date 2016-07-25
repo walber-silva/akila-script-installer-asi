@@ -37,3 +37,5 @@ sudo ./asi.sh
 ### Licença
 
 **Akila Script Installer (ASi)** licença [GPL Versão 3](LICENSE).
+
+#### Baseado no Projeto [ALPI](https://github.com/tiagorlampert/alpi)
